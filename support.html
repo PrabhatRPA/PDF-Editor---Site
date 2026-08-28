@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Support — PDF Editor</title>
+<meta name="description" content="Help, frequently asked questions, and terms of use for PDF Editor — the offline PDF editor and scanner for iPhone, iPad and Mac.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Crect width='36' height='36' rx='9' fill='hsl(258 68%25 52%25)'/%3E%3Cpath d='M11 8h9l5 5v15a1.5 1.5 0 0 1-1.5 1.5h-12A1.5 1.5 0 0 1 10 28V9.5A1.5 1.5 0 0 1 11.5 8Z' fill='white'/%3E%3Cpath d='M20 8l5 5h-5Z' fill='rgba(0,0,0,0.18)'/%3E%3Crect x='13' y='18' width='10' height='1.8' rx='.9' fill='hsl(258 68%25 52%25)'/%3E%3Crect x='13' y='22' width='7' height='1.8' rx='.9' fill='hsl(258 68%25 52%25)'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --background: #F7F6F2;
+    --foreground: #17191C;
+    --card: #FFFFFF;
+    --border: #E7E4EE;
+    --muted-fg: #5D646E;
+    --primary: #5B3FD6;
+    --primary-soft: rgba(91, 63, 214, 0.08);
+    --primary-border: rgba(91, 63, 214, 0.25);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: #0C0E10;
+      --foreground: #F2F4F6;
+      --card: #15181C;
+      --border: #262231;
+      --muted-fg: #8B95A1;
+      --primary: #A78BFA;
+      --primary-soft: rgba(167, 139, 250, 0.08);
+      --primary-border: rgba(167, 139, 250, 0.25);
+    }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--background);
+    color: var(--foreground);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .glow { background: radial-gradient(ellipse 80% 160px at 50% -30px, var(--primary-soft) 0%, transparent 100%); }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 40px 20px 56px; }
+  header.hero { text-align: center; margin-bottom: 32px; }
+  .brandmark { display: inline-block; }
+  h1 { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; margin-top: 14px; }
+  .tagline { color: var(--primary); font-weight: 600; font-size: 15px; margin-top: 4px; }
+  .updated { color: var(--muted-fg); font-size: 13px; margin-top: 10px; }
+  nav.crumbs { text-align: center; margin-bottom: 28px; font-size: 13px; }
+  nav.crumbs a { color: var(--primary); text-decoration: none; font-weight: 600; }
+  nav.crumbs a:hover { text-decoration: underline; }
+  nav.crumbs span { color: var(--muted-fg); margin: 0 8px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin-bottom: 18px;
+  }
+  .card.accent {
+    border-color: var(--primary-border);
+    background: linear-gradient(var(--primary-soft), var(--primary-soft)), var(--card);
+  }
+  h2 { font-size: 17px; font-weight: 650; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  h2 .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--primary); display: inline-block; flex-shrink: 0; }
+  p, li { font-size: 14.5px; color: var(--foreground); }
+  .card p + p { margin-top: 10px; }
+  .muted { color: var(--muted-fg); }
+  ul.checks { list-style: none; margin-top: 6px; }
+  ul.checks li { padding-left: 26px; position: relative; margin-bottom: 8px; color: var(--muted-fg); }
+  ul.checks li::before { content: "✓"; position: absolute; left: 2px; top: 0; color: var(--primary); font-weight: 700; }
+  ul.checks li strong { color: var(--foreground); }
+  .tldr { font-size: 17px; font-weight: 600; text-align: center; line-height: 1.5; }
+  .tldr .big { color: var(--primary); }
+  a { color: var(--primary); }
+  footer { text-align: center; color: var(--muted-fg); font-size: 12.5px; margin-top: 36px; line-height: 2; }
+  footer a { color: var(--muted-fg); }
+</style>
+</head>
+<body>
+<div class="glow">
+<div class="wrap">
+
+  <header class="hero">
+    <svg class="brandmark" width="64" height="64" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect width="36" height="36" rx="9" fill="hsl(258 68% 52%)"/>
+      <path d="M11.5 8h8.5l5 5v15a1.5 1.5 0 0 1-1.5 1.5h-12A1.5 1.5 0 0 1 10 28V9.5A1.5 1.5 0 0 1 11.5 8Z" fill="#FFFFFF"/>
+      <path d="M20 8l5 5h-5Z" fill="rgba(0,0,0,0.18)"/>
+      <rect x="13" y="18" width="10" height="1.8" rx=".9" fill="hsl(258 68% 52%)"/>
+      <rect x="13" y="22" width="7" height="1.8" rx=".9" fill="hsl(258 68% 52%)"/>
+    </svg>
+    <h1>Support</h1>
+    <p class="tagline">PDF Editor — Scan it. Edit it. Fill it. Sign it.</p>
+    <p class="updated">Last updated: August 28, 2026</p>
+  </header>
+
+  <nav class="crumbs">
+    <a href="index.html">Home</a><span>·</span><a href="privacy.html">Privacy Policy</a><span>·</span><a href="support.html">Support</a>
+  </nav>
+
+  <div class="card accent">
+    <p class="tldr">
+      <span class="big">Email <a href="mailto:prabhatkumarp@icloud.com">prabhatkumarp@icloud.com</a></span><br>
+      One person reads and answers these. Tell me your device, the iOS or macOS
+      version, and what you were doing — it is the difference between a fix and
+      a guess.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2><span class="dot"></span>Frequently asked questions</h2>
+
+    <p><strong>Where are my files stored?</strong></p>
+    <p class="muted">
+      Wherever you keep them. The app opens the file you pick, edits it in
+      place, and keeps no copy of its own beyond a working file that protects
+      you against losing work mid-edit. Nothing is uploaded — the app has no
+      network access at all.
+    </p>
+
+    <p><strong>Does it work offline?</strong></p>
+    <p class="muted">
+      Always, because there is no online. Every feature — scanning, text
+      recognition, editing, redaction, compression — runs on your device.
+    </p>
+
+    <p><strong>I scanned a page but Edit Text says there is nothing to edit.</strong></p>
+    <p class="muted">
+      A photographed page is a picture: the words are pixels, not text. Use
+      <em>Recognize</em> to add an invisible text layer so the page becomes
+      searchable, or <em>Make Text Editable</em> in Edit Text to read the lines
+      and retype one in place. Replacing a line covers the original pixels for
+      good, and the replacement is set in a standard font, so it will not match
+      the scan exactly.
+    </p>
+
+    <p><strong>Can I copy text out of a scan?</strong></p>
+    <p class="muted">
+      Yes. In Edit Text choose <em>Make Text Editable</em>, then press and hold
+      on a word and drag the handles across lines — or use Select All — and
+      Copy or Share. Nothing is written to the file by selecting.
+    </p>
+
+    <p><strong>Compress did not make my file smaller.</strong></p>
+    <p class="muted">
+      Compression re-encodes images that are stored at far more detail than
+      they are drawn at, and touches nothing else — text and vector drawings
+      are never rasterised, so the document stays searchable and sharp. A file
+      with no oversized images has nothing to gain, and the app says so rather
+      than pretending. It never returns a larger file than you gave it.
+    </p>
+
+    <p><strong>Is redaction really permanent?</strong></p>
+    <p class="muted">
+      The tool removes the page objects that intersect what you marked and then
+      draws the black box — it does not merely cover the content. The file is
+      saved as a full rewrite, so the removed content is not recoverable from
+      it. Anything overlapping a mark is removed whole, so slightly more may go
+      than you outlined. Always check the result before sharing it.
+    </p>
+
+    <p><strong>Can I export to Word or Excel?</strong></p>
+    <p class="muted">
+      No, and it is not planned. Every app that offers it does the conversion
+      on a server, and this app has no network access at all. Doing it properly
+      offline would need a full Office writer and a layout-reconstruction
+      engine — a larger piece of software than the rest of the app combined —
+      and doing it badly would produce a document you would have to rebuild by
+      hand. You can select and copy the text instead, and paste it where you
+      want it.
+    </p>
+
+    <p><strong>Why does my signature not appear on my other device?</strong></p>
+    <p class="muted">
+      By design. Signatures are held in the system Keychain, marked so they
+      stay on the device that created them, and excluded from syncing and from
+      backups restored to different hardware. A signature is the one thing that
+      should never travel.
+    </p>
+
+    <p><strong>Something went wrong with a document.</strong></p>
+    <p class="muted">
+      Your original is not overwritten until you choose Save, and every change
+      is written to a draft moments after you stop, so a crash loses nothing.
+      If a document comes out wrong, keep the original and email me — with the
+      file if you are able to share it, and without it if you are not.
+    </p>
+  </div>
+
+  <div class="card" id="terms">
+    <h2><span class="dot"></span>Disclaimer &amp; Terms of Use</h2>
+    <p>
+      <strong>No warranty.</strong> PDF Editor is provided "as is" and "as
+      available", without warranty of any kind, express or implied. To the
+      fullest extent permitted by law, the developer disclaims all warranties,
+      including any implied warranties of merchantability, fitness for a
+      particular purpose, title, accuracy and non-infringement, and does not
+      warrant that the app will be uninterrupted, error-free, or free of
+      harmful components.
+    </p>
+    <p>
+      <strong>Limitation of liability.</strong> To the fullest extent permitted
+      by law, the developer shall not be liable for any indirect, incidental,
+      special, consequential, exemplary or punitive damages, or for any loss of
+      profits, revenue, data, goodwill or business opportunity arising out of or
+      relating to your use of or inability to use the app. Where liability
+      cannot lawfully be excluded, total aggregate liability is limited to the
+      greater of the amount you paid for the app in the twelve months before the
+      claim arose, or one United States dollar.
+    </p>
+    <p>
+      <strong>Your documents are your responsibility.</strong> You are solely
+      responsible for the documents you open, edit, redact, sign and share, and
+      for keeping your own backups. Editing a PDF is not risk-free: always
+      verify the result before relying on it, and keep the original until you
+      have done so.
+    </p>
+    <p>
+      <strong>Redaction.</strong> The redaction tool removes the page objects
+      intersecting the areas you mark and saves without an incremental
+      revision, so removed content is not recoverable from the saved file. You
+      must still check the result yourself before sharing a redacted document.
+    </p>
+    <p class="muted">
+      This is conventional consumer-software boilerplate, not legal advice, and
+      it was not drafted by a lawyer. No wording prevents anyone from filing a
+      claim; disclaimers limit exposure, they do not create immunity, and some
+      of these limits are unenforceable in some places.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2><span class="dot"></span>Contact</h2>
+    <p>
+      Email <a href="mailto:prabhatkumarp@icloud.com">prabhatkumarp@icloud.com</a>.
+      Bug reports, feature requests and "this wording is confusing" are all
+      welcome.
+    </p>
+  </div>
+
+  <footer>
+    <p>
+      <a href="index.html">Home</a> &nbsp;·&nbsp;
+      <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
+      <a href="support.html">Support</a>
+    </p>
+    <p>© 2026 Prabhat Kumar. All rights reserved.</p>
+  </footer>
+
+</div>
+</div>
+</body>
+</html>

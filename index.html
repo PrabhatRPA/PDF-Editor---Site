@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF Editor — Scan it. Edit it. Fill it. Sign it.</title>
+<meta name="description" content="Scan, edit, fill, sign and redact PDFs on iPhone, iPad and Mac. Everything runs on your device — the app has no network access at all.">
+<meta property="og:title" content="PDF Editor — Scan it. Edit it. Fill it. Sign it.">
+<meta property="og:description" content="The offline PDF editor and scanner for iPhone, iPad and Mac. No account, no cloud, no tracking — your documents never leave your device.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Crect width='36' height='36' rx='9' fill='hsl(258 68%25 52%25)'/%3E%3Cpath d='M11.5 8h8.5l5 5v15a1.5 1.5 0 0 1-1.5 1.5h-12A1.5 1.5 0 0 1 10 28V9.5A1.5 1.5 0 0 1 11.5 8Z' fill='white'/%3E%3Cpath d='M20 8l5 5h-5Z' fill='rgba(0,0,0,0.18)'/%3E%3Crect x='13' y='18' width='10' height='1.8' rx='.9' fill='hsl(258 68%25 52%25)'/%3E%3Crect x='13' y='22' width='7' height='1.8' rx='.9' fill='hsl(258 68%25 52%25)'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --plum: #241A3D;
+    --plum-deep: #180F2B;
+    --lilac: #C7B8F5;
+    --signal: #A78BFA;
+    --violet: #5B3FD6;
+    --paper: #F4F2FA;
+    --ink: #1B1726;
+    --white: #FFFFFF;
+    --muted-on-dark: #B6ABD1;
+    --muted-on-light: #5F5A6B;
+    --radius: 20px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--plum);
+    color: var(--white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: inherit; }
+
+  /* ---------- Nav ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px clamp(16px, 4vw, 48px);
+    background: rgba(24, 15, 43, 0.72);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 19px; text-decoration: none; }
+  .nav-links { display: flex; gap: clamp(12px, 3vw, 28px); align-items: center; font-size: 14px; }
+  .nav-links a { text-decoration: none; color: var(--muted-on-dark); font-weight: 500; transition: color .2s; }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta { background: var(--signal); color: var(--plum-deep) !important; font-weight: 700; padding: 8px 18px; border-radius: 999px; }
+  .nav-cta:hover { filter: brightness(1.08); }
+  @media (max-width: 640px) { .nav-links a:not(.nav-cta) { display: none; } }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    text-align: center;
+    padding: clamp(56px, 9vw, 104px) clamp(16px, 4vw, 48px) clamp(40px, 6vw, 72px);
+    background: radial-gradient(ellipse 70% 480px at 50% -60px, rgba(167,139,250,0.22) 0%, transparent 100%);
+  }
+  .eyebrow {
+    display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: .04em;
+    text-transform: uppercase; color: var(--lilac);
+    border: 1px solid rgba(199,184,245,0.3); border-radius: 999px;
+    padding: 6px 14px; margin-bottom: 22px;
+  }
+  h1 { font-size: clamp(34px, 6.2vw, 62px); line-height: 1.08; letter-spacing: -0.03em; font-weight: 800; }
+  .grad { background: linear-gradient(120deg, var(--signal), var(--lilac)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .sub { margin: 20px auto 0; max-width: 620px; font-size: clamp(16px, 2vw, 19px); color: var(--muted-on-dark); }
+  .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+  .btn { text-decoration: none; font-weight: 700; padding: 13px 26px; border-radius: 999px; font-size: 15px; }
+  .btn-primary { background: var(--signal); color: var(--plum-deep); }
+  .btn-primary:hover { filter: brightness(1.08); }
+  .btn-ghost { border: 1px solid rgba(255,255,255,0.22); color: var(--white); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.07); }
+  .platforms { margin-top: 18px; font-size: 13.5px; color: var(--muted-on-dark); }
+
+  /* ---------- Sections ---------- */
+  section { padding: clamp(56px, 8vw, 100px) clamp(16px, 4vw, 48px); }
+  section.light { background: var(--paper); color: var(--ink); }
+  section.dark { background: var(--plum); }
+  section.darker { background: var(--plum-deep); }
+  .inner { max-width: 1080px; margin: 0 auto; }
+  .kicker { font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--violet); margin-bottom: 10px; }
+  section.dark .kicker, section.darker .kicker { color: var(--signal); }
+  h2 { font-size: clamp(26px, 3.6vw, 40px); letter-spacing: -0.02em; line-height: 1.15; font-weight: 800; }
+  .lede { margin-top: 14px; max-width: 660px; font-size: 16.5px; color: var(--muted-on-light); }
+  section.dark .lede, section.darker .lede { color: var(--muted-on-dark); }
+
+  .feature-grid { display: grid; gap: 18px; margin-top: 40px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+  .feature-card {
+    background: var(--white); border: 1px solid #E7E3F1; border-radius: var(--radius);
+    padding: 26px 24px;
+  }
+  section.dark .feature-card, section.darker .feature-card {
+    background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.10);
+  }
+  .feature-card .ico {
+    width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center;
+    background: rgba(91,63,214,0.10); color: var(--violet); font-size: 20px; margin-bottom: 14px;
+  }
+  section.dark .feature-card .ico, section.darker .feature-card .ico { background: rgba(167,139,250,0.14); color: var(--signal); }
+  .feature-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 7px; }
+  .feature-card p { font-size: 14.5px; color: var(--muted-on-light); }
+  section.dark .feature-card p, section.darker .feature-card p { color: var(--muted-on-dark); }
+
+  .privacy-points { display: grid; gap: 14px; margin-top: 34px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .point { border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 20px; }
+  .point strong { display: block; color: var(--signal); font-size: 15px; margin-bottom: 5px; }
+  .point span { font-size: 14px; color: var(--muted-on-dark); }
+
+  .honest { margin-top: 34px; border-left: 3px solid var(--signal); padding: 4px 0 4px 18px; max-width: 720px; }
+  .honest p { font-size: 15.5px; color: var(--muted-on-dark); }
+
+  footer { background: var(--plum-deep); text-align: center; padding: 44px 20px; font-size: 13.5px; color: var(--muted-on-dark); }
+  footer a { color: var(--muted-on-dark); text-decoration: none; }
+  footer a:hover { color: var(--white); }
+  .fine { max-width: 720px; margin: 14px auto 0; font-size: 12px; line-height: 1.7; color: rgba(182,171,209,0.7); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="index.html">
+    <svg width="28" height="28" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect width="36" height="36" rx="9" fill="hsl(258 68% 52%)"/>
+      <path d="M11.5 8h8.5l5 5v15a1.5 1.5 0 0 1-1.5 1.5h-12A1.5 1.5 0 0 1 10 28V9.5A1.5 1.5 0 0 1 11.5 8Z" fill="#FFFFFF"/>
+      <path d="M20 8l5 5h-5Z" fill="rgba(0,0,0,0.18)"/>
+      <rect x="13" y="18" width="10" height="1.8" rx=".9" fill="hsl(258 68% 52%)"/>
+      <rect x="13" y="22" width="7" height="1.8" rx=".9" fill="hsl(258 68% 52%)"/>
+    </svg>
+    PDF Editor
+  </a>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#privacy">Privacy</a>
+    <a href="support.html">Support</a>
+    <a class="nav-cta" href="#features">What it does</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <span class="eyebrow">iPhone · iPad · Mac</span>
+  <h1>Scan it. Edit it.<br><span class="grad">Fill it. Sign it.</span></h1>
+  <p class="sub">
+    A complete PDF editor that runs entirely on your device. Photograph a page,
+    change the words in it, fill a form, sign it, and send it — without a single
+    byte leaving your hands.
+  </p>
+  <div class="cta-row">
+    <a class="btn btn-primary" href="#features">See what it does</a>
+    <a class="btn btn-ghost" href="#privacy">Why it is private</a>
+  </div>
+  <p class="platforms">One app for iPhone, iPad and Mac · No account · No subscription wall on export</p>
+</header>
+
+<section class="light" id="features">
+  <div class="inner">
+    <p class="kicker">Everything in one place</p>
+    <h2>The whole job, on the device in your hand</h2>
+    <p class="lede">
+      Most PDF apps make you upload a file to do anything useful with it. This
+      one does the work locally — which is why it also works on a plane, in a
+      hospital waiting room, and on documents you would never put on someone
+      else’s server.
+    </p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="ico">📷</div>
+        <h3>Scan with the camera</h3>
+        <p>Edges found automatically, captured when steady, squared up and cleaned. Rotate, straighten, pick a look, add pages, save as one PDF.</p>
+      </div>
+      <div class="feature-card">
+        <div class="ico">✏️</div>
+        <h3>Edit the actual text</h3>
+        <p>Change words already in the document, in place. Every editable run is outlined before you touch anything, so you can see what will move.</p>
+      </div>
+      <div class="feature-card">
+        <div class="ico">🔍</div>
+        <h3>Retype a scanned line</h3>
+        <p>On a photographed page, the lines are read and outlined so you can replace one — patched with the paper’s own colour, fitted to the same box.</p>
+      </div>
+      <div class="feature-card">
+        <div class="ico">✍️</div>
+        <h3>Fill and sign</h3>
+        <p>Real form fields in reading order, or a text box anywhere on a printed form. Sign by drawing or typing; your signature never leaves the device.</p>
+      </div>
+      <div class="feature-card">
+        <div class="ico">🖍️</div>
+        <h3>Annotate</h3>
+        <p>Ink, highlight, underline, strike through, notes, shapes and stamps. Pick a mark back up afterwards to move, resize or delete it.</p>
+      </div>
+      <div class="feature-card">
+        <div class="ico">🗂️</div>
+        <h3>Organise pages</h3>
+        <p>Reorder by dragging, rotate, delete, duplicate, extract, split and combine. Undo reaches all of it.</p>
+      </div>
+      <div class="feature-card">
+        <div class="ico">🚫</div>
+        <h3>Redact for real</h3>
+        <p>Content is removed and then the box is drawn — not the other way round. A black box alone leaves the text in the file for anyone to copy out.</p>
+      </div>
+      <div class="feature-card">
+        <div class="ico">📉</div>
+        <h3>Compress without ruining it</h3>
+        <p>Only images stored at more detail than they are drawn at get re-encoded. Text and vectors are never rasterised, so the file stays searchable and sharp.</p>
+      </div>
+      <div class="feature-card">
+        <div class="ico">💧</div>
+        <h3>Watermarks, both ways</h3>
+        <p>Add your own mark — text or an image, placed anywhere — or tap a watermark on the page and take every copy of it off.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="darker" id="privacy">
+  <div class="inner">
+    <p class="kicker">Privacy</p>
+    <h2>It cannot upload your documents</h2>
+    <p class="lede">
+      Not “we promise not to”. The app ships without any network entitlement, so
+      the operating system will not grant it network access at all. There is no
+      route by which a document could leave your device.
+    </p>
+
+    <div class="privacy-points">
+      <div class="point"><strong>No network access</strong><span>Enforced by iOS and macOS, not by our good behaviour.</span></div>
+      <div class="point"><strong>No account</strong><span>No sign-up, no login, no email capture, no onboarding gate.</span></div>
+      <div class="point"><strong>No analytics</strong><span>No tracking SDK, no crash reporting, no ad identifiers.</span></div>
+      <div class="point"><strong>On-device processing</strong><span>Text recognition and page detection run locally. Always.</span></div>
+      <div class="point"><strong>Signatures stay put</strong><span>Kept in the Keychain, excluded from syncing and from restored backups.</span></div>
+      <div class="point"><strong>No watermark on output</strong><span>Nothing this app makes is branded with its own name.</span></div>
+    </div>
+
+    <div class="honest">
+      <p>
+        <strong>What it deliberately does not do:</strong> there is no Word or
+        Excel export. Every app offering it converts on a server, and this one
+        has no network access — doing it properly offline would need a full
+        Office writer and a layout engine, and doing it badly gives you a
+        document you have to rebuild by hand. You can select and copy the text
+        instead.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="inner" style="text-align:center;">
+    <h2>Your documents. Your device. Full stop.</h2>
+    <p class="lede" style="margin: 14px auto 0;">
+      Questions, bugs, or something worded confusingly? One person reads the
+      email and answers it.
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="mailto:prabhatkumarp@icloud.com">Email support</a>
+      <a class="btn btn-ghost" href="support.html">Read the FAQ</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>
+    <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
+    <a href="support.html">Support</a> &nbsp;·&nbsp;
+    <a href="support.html#terms">Disclaimer &amp; Terms</a>
+  </p>
+  <p style="margin-top: 10px;">© 2026 Prabhat Kumar. All rights reserved.</p>
+  <p class="fine">
+    PDF Editor is a document-editing tool provided “as is”, without warranty.
+    You are responsible for the documents you edit and for checking the results
+    before relying on them. Apple, the Apple logo, iPhone, iPad, Mac and iCloud
+    are trademarks of Apple Inc.
+  </p>
+</footer>
+
+</body>
+</html>
