@@ -8,7 +8,10 @@
 <meta property="og:title" content="PDF Editor — Scan it. Edit it. Fill it. Sign it.">
 <meta property="og:description" content="The offline PDF editor and scanner for iPhone, iPad and Mac. No account, no cloud, no tracking — your documents never leave your device.">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Crect width='36' height='36' rx='9' fill='hsl(258 68%25 52%25)'/%3E%3Cpath d='M11.5 8h8.5l5 5v15a1.5 1.5 0 0 1-1.5 1.5h-12A1.5 1.5 0 0 1 10 28V9.5A1.5 1.5 0 0 1 11.5 8Z' fill='white'/%3E%3Cpath d='M20 8l5 5h-5Z' fill='rgba(0,0,0,0.18)'/%3E%3Crect x='13' y='18' width='10' height='1.8' rx='.9' fill='hsl(258 68%25 52%25)'/%3E%3Crect x='13' y='22' width='7' height='1.8' rx='.9' fill='hsl(258 68%25 52%25)'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" sizes="64x64" href="icon-64.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
+<meta property="og:image" content="icon-1024.png">
 <style>
   :root {
     --plum: #241A3D;
@@ -118,23 +121,48 @@
   footer a { color: var(--muted-on-dark); text-decoration: none; }
   footer a:hover { color: var(--white); }
   .fine { max-width: 720px; margin: 14px auto 0; font-size: 12px; line-height: 1.7; color: rgba(182,171,209,0.7); }
+
+  a.mailto { cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+  a.mailto::after { content: " \2197"; font-size: 0.85em; }
+  a.mailto.revealed::after { content: ""; }
+
+  /* Screenshot strips. Each scrolls on its own so the page body never moves sideways. */
+  .shots { padding: 76px 0 84px; }
+  .shots h2 { text-align: center; margin-bottom: 8px; }
+  .shots .lede { text-align: center; color: var(--muted-on-dark); margin-bottom: 30px; }
+  .shot-strip {
+    display: flex; gap: 18px; overflow-x: auto; padding: 4px 24px 22px;
+    scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+  }
+  .shot-strip::-webkit-scrollbar { height: 8px; }
+  .shot-strip::-webkit-scrollbar-thumb { background: rgba(255,255,255,.18); border-radius: 4px; }
+  .shot-strip figure { flex: 0 0 auto; scroll-snap-align: center; margin: 0; }
+  .shot-strip img {
+    border-radius: 18px; box-shadow: 0 18px 40px rgba(0,0,0,.38);
+    border: 1px solid rgba(255,255,255,.10);
+  }
+  .shot-strip.phone img { width: 232px; }
+  .shot-strip.tablet img { width: 340px; }
+  .strip-label {
+    text-align: center; font-size: .82rem; letter-spacing: .09em; text-transform: uppercase;
+    color: var(--muted-on-dark); margin: 18px 0 6px;
+  }
+  @media (max-width: 640px) {
+    .shot-strip.phone img { width: 190px; }
+    .shot-strip.tablet img { width: 260px; }
+  }
 </style>
 </head>
 <body>
 
 <nav>
   <a class="brand" href="index.html">
-    <svg width="28" height="28" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect width="36" height="36" rx="9" fill="hsl(258 68% 52%)"/>
-      <path d="M11.5 8h8.5l5 5v15a1.5 1.5 0 0 1-1.5 1.5h-12A1.5 1.5 0 0 1 10 28V9.5A1.5 1.5 0 0 1 11.5 8Z" fill="#FFFFFF"/>
-      <path d="M20 8l5 5h-5Z" fill="rgba(0,0,0,0.18)"/>
-      <rect x="13" y="18" width="10" height="1.8" rx=".9" fill="hsl(258 68% 52%)"/>
-      <rect x="13" y="22" width="7" height="1.8" rx=".9" fill="hsl(258 68% 52%)"/>
-    </svg>
+    <img src="icon-64.png" width="28" height="28" alt="" class="appmark">
     PDF Editor
   </a>
   <div class="nav-links">
     <a href="#features">Features</a>
+    <a href="#screens">Screens</a>
     <a href="#privacy">Privacy</a>
     <a href="support.html">Support</a>
     <a class="nav-cta" href="#features">What it does</a>
@@ -218,6 +246,60 @@
         <h3>Watermarks, both ways</h3>
         <p>Add your own mark — text or an image, placed anywhere — or tap a watermark on the page and take every copy of it off.</p>
       </div>
+      <div class="feature-card">
+        <div class="ico">🔄</div>
+        <h3>Correct page orientation</h3>
+        <p>One page at full size with a filmstrip of the rest, so the sideways one is easy to find. Turn a whole document at once if it all came in rotated.</p>
+      </div>
+      <div class="feature-card">
+        <div class="ico">🧩</div>
+        <h3>Combine, in your order</h3>
+        <p>Add the files, see each one's page count, and choose which goes first. The result opens in the page grid where any page can be dragged into place.</p>
+      </div>
+      <div class="feature-card">
+        <div class="ico">🔎</div>
+        <h3>Make a scan searchable</h3>
+        <p>Recognition writes an invisible layer behind the picture. The page looks exactly as it did — only search, selection and copying start working.</p>
+      </div>
+      <div class="feature-card">
+        <div class="ico">📋</div>
+        <h3>Copy words off a photo</h3>
+        <p>Select across lines on a photographed page and copy or share the text. Nothing is written to the document to do it.</p>
+      </div>
+      <div class="feature-card">
+        <div class="ico">🖼️</div>
+        <h3>Export pages as images</h3>
+        <p>Save every page as a separate image file, or the whole document as a fresh PDF, wherever you choose to put it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark shots" id="screens">
+  <div class="inner">
+    <h2>See it working</h2>
+    <p class="lede">Real screens from the app — not mock-ups.</p>
+    <p class="strip-label">iPhone</p>
+    <div class="shot-strip phone">
+      <figure><img src="screenshots/iphone-01.png" alt="PDF Editor on iPhone, screen 1" loading="lazy" width="1284" height="2778"></figure>
+      <figure><img src="screenshots/iphone-02.png" alt="PDF Editor on iPhone, screen 2" loading="lazy" width="1284" height="2778"></figure>
+      <figure><img src="screenshots/iphone-03.png" alt="PDF Editor on iPhone, screen 3" loading="lazy" width="1284" height="2778"></figure>
+      <figure><img src="screenshots/iphone-04.png" alt="PDF Editor on iPhone, screen 4" loading="lazy" width="1284" height="2778"></figure>
+      <figure><img src="screenshots/iphone-05.png" alt="PDF Editor on iPhone, screen 5" loading="lazy" width="1284" height="2778"></figure>
+      <figure><img src="screenshots/iphone-06.png" alt="PDF Editor on iPhone, screen 6" loading="lazy" width="1284" height="2778"></figure>
+      <figure><img src="screenshots/iphone-07.png" alt="PDF Editor on iPhone, screen 7" loading="lazy" width="1284" height="2778"></figure>
+      <figure><img src="screenshots/iphone-08.png" alt="PDF Editor on iPhone, screen 8" loading="lazy" width="1284" height="2778"></figure>
+    </div>
+    <p class="strip-label">iPad</p>
+    <div class="shot-strip tablet">
+      <figure><img src="screenshots/ipad-01.png" alt="PDF Editor on iPad, screen 1" loading="lazy" width="2048" height="2732"></figure>
+      <figure><img src="screenshots/ipad-02.png" alt="PDF Editor on iPad, screen 2" loading="lazy" width="2048" height="2732"></figure>
+      <figure><img src="screenshots/ipad-03.png" alt="PDF Editor on iPad, screen 3" loading="lazy" width="2048" height="2732"></figure>
+      <figure><img src="screenshots/ipad-04.png" alt="PDF Editor on iPad, screen 4" loading="lazy" width="2048" height="2732"></figure>
+      <figure><img src="screenshots/ipad-05.png" alt="PDF Editor on iPad, screen 5" loading="lazy" width="2048" height="2732"></figure>
+      <figure><img src="screenshots/ipad-06.png" alt="PDF Editor on iPad, screen 6" loading="lazy" width="2048" height="2732"></figure>
+      <figure><img src="screenshots/ipad-07.png" alt="PDF Editor on iPad, screen 7" loading="lazy" width="2048" height="2732"></figure>
+      <figure><img src="screenshots/ipad-08.png" alt="PDF Editor on iPad, screen 8" loading="lazy" width="2048" height="2732"></figure>
     </div>
   </div>
 </section>
@@ -262,7 +344,7 @@
       email and answers it.
     </p>
     <div class="cta-row">
-      <a class="btn btn-primary" href="mailto:prabhatkumarp@icloud.com">Email support</a>
+      <a class="btn btn-primary mailto" href="#" data-u="prabhat_kumar_p" data-d="hotmail.com" data-s="PDF%20Editor%20support">Email support</a><noscript><a class="btn btn-primary" href="mailto:prabhat_kumar_p@hotmail.com?subject=PDF%20Editor%20support">Email support</a></noscript>
       <a class="btn btn-ghost" href="support.html">Read the FAQ</a>
     </div>
   </div>
@@ -283,5 +365,41 @@
   </p>
 </footer>
 
+<script>
+  // The address is assembled at click time rather than sitting in the markup, so a scraper
+  // reading the page source does not simply harvest it. One click does both things asked
+  // for: it reveals the address on the page and opens a draft — so someone with no mail
+  // client set up can still read and copy it.
+  document.querySelectorAll("a.mailto").forEach(function (link) {
+    var address = link.dataset.u + "@" + link.dataset.d;
+    link.setAttribute("aria-label", "Show the support email address and start a message");
+    link.addEventListener("click", function (event) {
+      event.preventDefault();
+      link.textContent = address;
+      link.classList.add("revealed");
+      var subject = link.dataset.s ? "?subject=" + link.dataset.s : "";
+      window.location.href = "mailto:" + address + subject;
+    });
+  });
+</script>
+<script>
+  (function () {
+    document.querySelectorAll(".shot-strip img").forEach(function (image) {
+      image.addEventListener("error", function () {
+        var figure = image.closest("figure");
+        if (figure) figure.remove();
+        document.querySelectorAll(".shot-strip").forEach(function (strip) {
+          if (!strip.querySelector("figure")) {
+            var label = strip.previousElementSibling;
+            if (label && label.classList.contains("strip-label")) label.remove();
+            strip.remove();
+          }
+        });
+        var section = document.getElementById("screens");
+        if (section && !section.querySelector("figure")) section.remove();
+      });
+    });
+  })();
+</script>
 </body>
 </html>

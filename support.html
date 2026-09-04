@@ -6,7 +6,10 @@
 <meta name="color-scheme" content="light dark">
 <title>Support — PDF Editor</title>
 <meta name="description" content="Help, frequently asked questions, and terms of use for PDF Editor — the offline PDF editor and scanner for iPhone, iPad and Mac.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Crect width='36' height='36' rx='9' fill='hsl(258 68%25 52%25)'/%3E%3Cpath d='M11 8h9l5 5v15a1.5 1.5 0 0 1-1.5 1.5h-12A1.5 1.5 0 0 1 10 28V9.5A1.5 1.5 0 0 1 11.5 8Z' fill='white'/%3E%3Cpath d='M20 8l5 5h-5Z' fill='rgba(0,0,0,0.18)'/%3E%3Crect x='13' y='18' width='10' height='1.8' rx='.9' fill='hsl(258 68%25 52%25)'/%3E%3Crect x='13' y='22' width='7' height='1.8' rx='.9' fill='hsl(258 68%25 52%25)'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" sizes="64x64" href="icon-64.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
+<meta property="og:image" content="icon-1024.png">
 <style>
   :root {
     --background: #F7F6F2;
@@ -74,6 +77,10 @@
   a { color: var(--primary); }
   footer { text-align: center; color: var(--muted-fg); font-size: 12.5px; margin-top: 36px; line-height: 2; }
   footer a { color: var(--muted-fg); }
+
+  a.mailto { cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+  a.mailto::after { content: " \2197"; font-size: 0.85em; }
+  a.mailto.revealed::after { content: ""; }
 </style>
 </head>
 <body>
@@ -81,13 +88,7 @@
 <div class="wrap">
 
   <header class="hero">
-    <svg class="brandmark" width="64" height="64" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect width="36" height="36" rx="9" fill="hsl(258 68% 52%)"/>
-      <path d="M11.5 8h8.5l5 5v15a1.5 1.5 0 0 1-1.5 1.5h-12A1.5 1.5 0 0 1 10 28V9.5A1.5 1.5 0 0 1 11.5 8Z" fill="#FFFFFF"/>
-      <path d="M20 8l5 5h-5Z" fill="rgba(0,0,0,0.18)"/>
-      <rect x="13" y="18" width="10" height="1.8" rx=".9" fill="hsl(258 68% 52%)"/>
-      <rect x="13" y="22" width="7" height="1.8" rx=".9" fill="hsl(258 68% 52%)"/>
-    </svg>
+    <img src="icon-180.png" width="64" height="64" alt="" class="brandmark">
     <h1>Support</h1>
     <p class="tagline">PDF Editor — Scan it. Edit it. Fill it. Sign it.</p>
     <p class="updated">Last updated: August 28, 2026</p>
@@ -99,7 +100,7 @@
 
   <div class="card accent">
     <p class="tldr">
-      <span class="big">Email <a href="mailto:prabhatkumarp@icloud.com">prabhatkumarp@icloud.com</a></span><br>
+      <span class="big">Email <a class="mailto" href="#" data-u="prabhat_kumar_p" data-d="hotmail.com" data-s="PDF%20Editor%20support">Show email address</a><noscript><a href="mailto:prabhat_kumar_p@hotmail.com">prabhat_kumar_p@hotmail.com</a></noscript></span><br>
       One person reads and answers these. Tell me your device, the iOS or macOS
       version, and what you were doing — it is the difference between a fix and
       a guess.
@@ -242,7 +243,7 @@
   <div class="card">
     <h2><span class="dot"></span>Contact</h2>
     <p>
-      Email <a href="mailto:prabhatkumarp@icloud.com">prabhatkumarp@icloud.com</a>.
+      Email <a class="mailto" href="#" data-u="prabhat_kumar_p" data-d="hotmail.com" data-s="PDF%20Editor%20support">Show email address</a><noscript><a href="mailto:prabhat_kumar_p@hotmail.com">prabhat_kumar_p@hotmail.com</a></noscript>.
       Bug reports, feature requests and "this wording is confusing" are all
       welcome.
     </p>
@@ -259,5 +260,22 @@
 
 </div>
 </div>
+<script>
+  // The address is assembled at click time rather than sitting in the markup, so a scraper
+  // reading the page source does not simply harvest it. One click does both things asked
+  // for: it reveals the address on the page and opens a draft — so someone with no mail
+  // client set up can still read and copy it.
+  document.querySelectorAll("a.mailto").forEach(function (link) {
+    var address = link.dataset.u + "@" + link.dataset.d;
+    link.setAttribute("aria-label", "Show the support email address and start a message");
+    link.addEventListener("click", function (event) {
+      event.preventDefault();
+      link.textContent = address;
+      link.classList.add("revealed");
+      var subject = link.dataset.s ? "?subject=" + link.dataset.s : "";
+      window.location.href = "mailto:" + address + subject;
+    });
+  });
+</script>
 </body>
 </html>
