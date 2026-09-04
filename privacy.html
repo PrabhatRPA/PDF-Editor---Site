@@ -161,11 +161,11 @@
       be recognised, converted or analysed.
     </p>
     <p>
-      <strong>Saved signatures</strong> are stored in the system Keychain,
-      marked so they are available only on this device while it is unlocked.
-      They are excluded from Keychain syncing and from encrypted backups
-      restored onto different hardware. A signature never leaves the device it
-      was created on.
+      <strong>Saved signatures</strong> are stored in a file inside the app's
+      own storage, readable only by this app and protected so that it cannot be
+      read while the device is locked. The file is excluded from backups, and
+      nothing about a signature is synced. A signature never leaves the device
+      it was created on.
     </p>
     <p>
       <strong>The list of recent documents</strong> is stored on your device as
