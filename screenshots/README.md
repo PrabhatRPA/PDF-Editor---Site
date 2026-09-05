@@ -1,16 +1,24 @@
-# Marketing screenshots
+# Screenshots on the site
 
-Drop the App Store frames here with these exact names. `index.html` looks for them by name,
-and any it cannot find removes itself from the page — so the site never shows a broken image
-while the set is incomplete.
+These are **web copies**, not the App Store assets. They are resized and re-encoded as JPEG
+because the strips on the home page display them at 232pt (iPhone) and 340pt (iPad): serving
+the full-resolution PNGs would have put 47 MB on a single page to draw about a megabyte of
+pixels. As JPEG at 760px and 1040px wide the whole gallery is 1.4 MB.
 
-| File | Device | Pixel size |
+| | Served at | Source |
 |---|---|---|
-| `iphone-01.png` … `iphone-08.png` | iPhone | 1284 × 2778 |
-| `ipad-01.png` … `ipad-08.png` | iPad | 2048 × 2732 |
+| `iphone-*.jpg` | 760 px wide | 1284 × 2778 PNG |
+| `ipad-*.jpg` | 1040 px wide | 2048 × 2732 PNG |
 
-Order matters only in that `01` is shown first, so lead with the strongest frame.
+**The originals are the App Store submission assets** and live in the app repository under
+`Design/AppStore/`. Upload those to App Store Connect, not these.
 
-Keep them as PNG. If the page feels slow on a phone, re-encode at a lower quality rather than
-resizing — the strip scales them down in CSS and a smaller source will look soft on a
-high-density screen.
+To regenerate after changing a source frame:
+
+```bash
+sips -s format jpeg -s formatOptions 82 -Z 760  iphone-01-hero.png --out iphone-01-hero.jpg
+sips -s format jpeg -s formatOptions 82 -Z 1040 ipad-01-hero.png   --out ipad-01-hero.jpg
+```
+
+Each image carries its real `width` and `height`, so the page reserves the right space and
+does not jump as they load. Any file that goes missing still removes itself from the strip.
