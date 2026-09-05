@@ -166,6 +166,20 @@
     .shot-strip.phone img { width: 190px; }
     .shot-strip.tablet img { width: 260px; }
   }
+
+  /* Get the App. Rendered from one constant so the link is set in a single place — see
+     set-app-store-link.sh. While the app is unreleased these read "Coming to the App Store"
+     and are not links: a prominent button pointing at a page that does not exist yet is
+     worse than no button, and App Review follows the marketing URL. */
+  .getapp {
+    display: inline-flex; align-items: center; gap: 9px; white-space: nowrap;
+  }
+  .getapp .glyph { font-size: 1.05em; line-height: 1; }
+  .getapp[data-state="soon"] {
+    background: rgba(255,255,255,.10); border: 1px solid rgba(255,255,255,.22);
+    color: var(--lilac); cursor: default; box-shadow: none;
+  }
+  .nav-cta.getapp[data-state="soon"] { color: var(--lilac); }
 </style>
 </head>
 <body>
@@ -180,7 +194,7 @@
     <a href="#screens">Screens</a>
     <a href="#privacy">Privacy</a>
     <a href="support.html">Support</a>
-    <a class="nav-cta" href="#features">What it does</a>
+    <a class="nav-cta getapp" data-soon="Coming soon" aria-disabled="true"><span class="glyph" aria-hidden="true"></span><span class="label">Get the App</span></a>
   </div>
 </nav>
 
@@ -193,8 +207,8 @@
     byte leaving your hands.
   </p>
   <div class="cta-row">
-    <a class="btn btn-primary" href="#features">See what it does</a>
-    <a class="btn btn-ghost" href="#privacy">Why it is private</a>
+    <a class="btn btn-primary getapp" data-soon="Coming to the App Store" aria-disabled="true"><span class="glyph" aria-hidden="true"></span><span class="label">Get the App</span></a>
+    <a class="btn btn-ghost" href="#features">See what it does</a>
   </div>
   <p class="platforms">One app for iPhone, iPad and Mac · No account · No subscription wall on export</p>
 </header>
@@ -361,6 +375,7 @@
     </p>
     <div class="cta-row">
       <a class="btn btn-primary mailto" href="#" data-u="prabhatkumarp" data-d="icloud.com" data-s="PDF%20Editor%20support">Email support</a><noscript><a class="btn btn-primary" href="mailto:prabhatkumarp@icloud.com?subject=PDF%20Editor%20support">Email support</a></noscript>
+      <a class="btn btn-ghost getapp" data-soon="Coming to the App Store" aria-disabled="true"><span class="glyph" aria-hidden="true"></span><span class="label">Get the App</span></a>
       <a class="btn btn-ghost" href="support.html">Read the FAQ</a>
     </div>
   </div>
@@ -416,6 +431,27 @@
       });
     });
   })();
+</script>
+<script>
+  // ── The one place the App Store link is set ───────────────────────────────────────────
+  // Paste the listing URL between the quotes and every Get the App button on the site goes
+  // live. Leave it empty and they stay in their "coming soon" state instead of pointing at
+  // a page that does not exist. Format: https://apps.apple.com/app/id0000000000
+  var APP_STORE_URL = "";
+  // ──────────────────────────────────────────────────────────────────────────────────────
+  document.querySelectorAll(".getapp").forEach(function (button) {
+    if (APP_STORE_URL) {
+      button.href = APP_STORE_URL;
+      button.setAttribute("data-state", "live");
+      button.removeAttribute("aria-disabled");
+    } else {
+      button.removeAttribute("href");
+      button.setAttribute("data-state", "soon");
+      button.setAttribute("aria-disabled", "true");
+      var label = button.querySelector(".label");
+      if (label) label.textContent = button.dataset.soon || "Coming to the App Store";
+    }
+  });
 </script>
 </body>
 </html>
