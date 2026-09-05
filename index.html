@@ -147,6 +147,21 @@
     text-align: center; font-size: .82rem; letter-spacing: .09em; text-transform: uppercase;
     color: var(--muted-on-dark); margin: 18px 0 6px;
   }
+  /* Eight frames never fit, and a strip that gives no sign it continues reads as a strip
+     with four things in it. The right edge fades under the frames still to come, and the
+     hint says so outright for anyone who does not read a fade as an affordance. */
+  .strip-wrap { position: relative; }
+  .strip-wrap::after {
+    content: ""; position: absolute; top: 0; right: 0; bottom: 22px; width: 90px;
+    pointer-events: none;
+    background: linear-gradient(to right, rgba(36,26,61,0), var(--plum) 92%);
+  }
+  .strip-wrap.at-end::after { opacity: 0; transition: opacity .2s ease; }
+  .scroll-hint {
+    text-align: center; font-size: .8rem; color: var(--muted-on-dark);
+    margin: 2px 0 0; opacity: .85;
+  }
+  @media (prefers-reduced-motion: reduce) { .strip-wrap.at-end::after { transition: none; } }
   @media (max-width: 640px) {
     .shot-strip.phone img { width: 190px; }
     .shot-strip.tablet img { width: 260px; }
@@ -280,7 +295,7 @@
     <h2>See it working</h2>
     <p class="lede">Real screens from the app — not mock-ups.</p>
     <p class="strip-label">iPhone</p>
-    <div class="shot-strip phone">
+    <div class="strip-wrap"><div class="shot-strip phone">
       <figure><img src="screenshots/iphone-01-hero.jpg" alt="PDF Editor on iPhone: The tool grid — edit, sign, scan, organise and export, all in one place" loading="lazy" decoding="async" width="351" height="760"></figure>
       <figure><img src="screenshots/iphone-02-scan-to-pdf.jpg" alt="PDF Editor on iPhone: Photographing a page: the edges are found automatically before capture" loading="lazy" decoding="async" width="351" height="760"></figure>
       <figure><img src="screenshots/iphone-03-edit-text.jpg" alt="PDF Editor on iPhone: Editing an invoice — every changeable run of text outlined on the page" loading="lazy" decoding="async" width="351" height="760"></figure>
@@ -289,9 +304,9 @@
       <figure><img src="screenshots/iphone-06-redact.jpg" alt="PDF Editor on iPhone: Three areas marked for redaction on a tenancy agreement" loading="lazy" decoding="async" width="351" height="760"></figure>
       <figure><img src="screenshots/iphone-07-pages.jpg" alt="PDF Editor on iPhone: Dragging a page into a new position in the page grid" loading="lazy" decoding="async" width="351" height="760"></figure>
       <figure><img src="screenshots/iphone-08-offline.jpg" alt="PDF Editor on iPhone: The privacy summary: nothing leaves the device, no account, no tracking" loading="lazy" decoding="async" width="351" height="760"></figure>
-    </div>
+    </div></div>
     <p class="strip-label">iPad</p>
-    <div class="shot-strip tablet">
+    <div class="strip-wrap"><div class="shot-strip tablet">
       <figure><img src="screenshots/ipad-01-hero.jpg" alt="PDF Editor on iPad: The tool grid — edit, sign, scan, organise and export, all in one place" loading="lazy" decoding="async" width="779" height="1040"></figure>
       <figure><img src="screenshots/ipad-02-scan-to-pdf.jpg" alt="PDF Editor on iPad: Photographing a page: the edges are found automatically before capture" loading="lazy" decoding="async" width="779" height="1040"></figure>
       <figure><img src="screenshots/ipad-03-edit-text.jpg" alt="PDF Editor on iPad: Editing an invoice — every changeable run of text outlined on the page" loading="lazy" decoding="async" width="779" height="1040"></figure>
@@ -300,7 +315,8 @@
       <figure><img src="screenshots/ipad-06-redact.jpg" alt="PDF Editor on iPad: Three areas marked for redaction on a tenancy agreement" loading="lazy" decoding="async" width="779" height="1040"></figure>
       <figure><img src="screenshots/ipad-07-pages.jpg" alt="PDF Editor on iPad: Dragging a page into a new position in the page grid" loading="lazy" decoding="async" width="779" height="1040"></figure>
       <figure><img src="screenshots/ipad-08-offline.jpg" alt="PDF Editor on iPad: The privacy summary: nothing leaves the device, no account, no tracking" loading="lazy" decoding="async" width="779" height="1040"></figure>
-    </div>
+    </div></div>
+    <p class="scroll-hint">Swipe or scroll each row for all eight screens</p>
   </div>
 </section>
 
